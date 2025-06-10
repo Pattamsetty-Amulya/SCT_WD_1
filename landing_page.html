@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Landing Page</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #00796b;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover {
+      color: yellow;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    main {
+      padding-top: 100px;
+    }
+
+    .section {
+      display: none;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      min-height: 80vh;
+      background-color: #ffffff;
+    }
+
+    .section.active {
+      display: flex;
+    }
+
+    .text-content {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      padding: 20px;
+      margin: auto;
+    }
+
+    .text-content h1 {
+      font-size: 32px;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    .text-content p {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .image-content {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .image-content img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #00796b;
+        width: 100%;
+        text-align: center;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .section {
+        flex-direction: column;
+      }
+
+      .text-content, .image-content {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="logo">MyBrand</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <nav>
+        <ul id="nav-list">
+          <li><a onclick="showSection('home')">Home</a></li>
+          <li><a onclick="showSection('features')">Features</a></li>
+          <li><a onclick="showSection('projects')">Projects</a></li>
+          <li><a onclick="showSection('contact')">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section active">
+      <div class="text-content">
+        <h1>Welcome to MyBrand! </h1>
+        <p>We build beautiful, user-friendly websites designed to look great on all devices. 
+            Explore our site to learn more about what we offer.</p>
+      </div>     
+      <div class="image-content">
+        <img src="img.jpg" alt="Home">
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="text-content">
+        <h1>Our Features</h1>
+        <p>Our websites are fully responsive, fast, and user-friendly. 
+            We use the latest technology to build modern designs that help your business grow.</p>
+      </div>
+      <div class="image-content">
+        <img src="features.jpg" alt="Features">
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="text-content">
+        <h1>Our Projects</h1>
+        <p>Check out some of our recent projects in web development, IoT, and smart tech.
+             We focus on quality and innovation to deliver the best solutions.</p>
+      </div>
+      <div class="image-content">
+        <img src="project.jpg" alt="Projects">
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="text-content">
+        <h1>Contact Us</h1>
+        <p>Have questions or want to work with us? Reach out by email or phone — we’d love to hear from you and help you succeed. </p>
+      </div>
+      <div class="image-content">
+        <img src="contact.jpg" alt="Contact">
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("nav-list").classList.toggle("show");
+    }
+
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      document.getElementById("nav-list").classList.remove("show");
+    }
+  </script>
+
+</body>
+</html>
